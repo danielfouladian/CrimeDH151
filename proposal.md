@@ -4,6 +4,7 @@
 Our team name is: The Avengers of Data and our project will focus on crime data in New York City, with a particular emphasis on analyzing how socioeconomic and racial factors are correlated with the reporting and police response to crime. Our goal is to highlight how racial profiling affects certain groups in NYC and identify the groups that are more frequently subjected to criminalization.
 
 ## Meet the Team!
+
 | Christina Cha | Cynthia Gong | Daniel Fouladian | Kristina Thabet |
 |:---:|:---:|:---:|:---:|
 | Designer | Data Analyst | Data Analyst | Writer / Data Analyst |
@@ -19,6 +20,7 @@ We will be using web mapping as our methodology of inquiry to provide a more com
 We plan on creating a multi-layered map that will provide a narrative on racial profiling by NYPD as well as a general comparison between crime and racial/socioeconomic background. The main feature of the map is to display demographic information for each neighborhood and compare it to the density of arrests in that neighborhood by racial background. Our arrests will be pinned onto the map by markers, enabling viewers to understand the arrest patterns by NYPD. 
 
 ## Workflow
+
 | | | 
 |:---:|:---:|
 | Meetings | We will have weekly meetings on Zoom. After each meeting, we will have a deadline for tasks outlining our deliverables for next week. During the meetings, we will go over our progress. Furthemore, we plan on having one person screensharing so we can do pair programming where one of us codes and the remaining of us serve as navigators. |
