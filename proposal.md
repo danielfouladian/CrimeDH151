@@ -34,6 +34,9 @@ Schedule:
 ## Technical Scope
 We will be embedding Leaflet into our JavaScript code in orderto create an interactive map of criminal activity in New York City. We will also use HTML to put our website together in a meaningful and aesthetic way. GitHub will be used as a tool to merge our individual code blocks, publish our progress from each week, and host our final product. CSS will be used for the design element of our webpage while Javascript will allow the project to have interactive elements. 
 
+## Geographic Scope
+Our map will be at the city-level, and will focus on New York City and its five boroughs.
+
 ## Data: 
 + https://www.kaggle.com/datasets/thaddeussegura/nypd-arrest-data-20062019
  --> Contains demographic data and coordinates of arrests which will set up the foundation of the project and a tool to analize New York Crimes.
