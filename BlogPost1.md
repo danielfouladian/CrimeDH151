@@ -3,5 +3,14 @@
 + https://redbird.shinyapps.io/police-bias-map/: Police Bias Map displays black to white arrest risk ratio for all the counties in the US. Reveals the racial disparities present – Black individuals are much more likely to be at risk of getting arrested in more counties than white individuals. Inspires us to draw similar meaningful conclusions from our analysis – we want to highlight the disparities that may be present in NYC with our project. The stark contrast apparent in the map helps solidify the statement the mapping website is making.
 
 # Datasets
-+ https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u/data
-This dataset contains a list of every single arrest in NYC up till the end of 2021. Variables of interest include the reason for arrest, the perpatrator race and sex, as well as the exact coordinates of where the crime was committed. We plan on utilizing this dataset as the core component of our analysis; the locations of every arrest will be plotted using the given coordinates and the racial data points associated with those coordinates will be marked  as well. 
++ https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u/data: This dataset contains a list of every single arrest in NYC up till the end of 2021. Variables of interest include the reason for arrest, the perpatrator race and sex, as well as the exact coordinates of where the crime was committed. We plan on utilizing this dataset as the core component of our analysis; the locations of every arrest will be plotted using the given coordinates and the racial data points associated with those coordinates will be marked as well. 
++ https://data.cityofnewyork.us/Public-Safety/Crime-Map-/5jvd-shfj: This dataset includes all valid felony, misdemeanor, and violation crimes reported to the New York City Police Department (NYPD) in the year 2016. The data provides specific offense descriptions, as well as specific location descriptions, accompanied by coordinates. We plan on using these coordinates to map out the frequency of crimes in different locations across NYC
+
+# Our Website Design!
+The website will display information for each sub-borough of NYC. We will showcase the population density for each racial group in that region, and also display the arrests for the selected racial group as well. These filters can be toggled using a menu on the map. 
++ We hope for our website to be interactive in date and time of crimes, allowing users to view visualized data from specific time regions that our data spans through. 
++ Color scheme: black background (night-mode feel), various shades of blue, red-orange-yellow scale to assess severity of the levels of crime in NYC.
++ When the website is first opened, it will display a map of NYC in full, color coded to represent crime rates. When the mouse is hovered over each sub-borough, racial group data will become present, allowing users to understand how to accurately interact with the map.
++ We may also include a short statement on the main menu guiding users in interacting with our map in the most efficient way. 
+
+![](websitedraft.png)
