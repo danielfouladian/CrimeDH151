@@ -12,5 +12,16 @@ The website will display information for each sub-borough of NYC. We will showca
 + Color scheme: black background (night-mode feel), various shades of blue, red-orange-yellow scale to assess severity of the levels of crime in NYC.
 + When the website is first opened, it will display a map of NYC in full, color coded to represent crime rates. When the mouse is hovered over each sub-borough, racial group data will become present, allowing users to understand how to accurately interact with the map.
 + We may also include a short statement on the main menu guiding users in interacting with our map in the most efficient way. 
++ We could implement tabs in the project. Either at the top or side. Tabs can include home page, maybe narrative to explain whats going on and also about us page.
 
 ![](websitedraft.png)
+
+# Goal of Site
+We hope this site will highlight the injustices with racial profiling when it comes to arrests in New York City. The goal of our mapping project is to reveal the disparities that may be present amongst different racial groups in relation to the frequency of arrests as well as the proportion of arrests to the population proportion in a given area.
+
+# Progress and Responsibilities
++ **Christina**: Researched various design features and layouts we can implement into our website to best represent our data and topic and enhance the user experience.  
++ **Cynthia**: Reviewed datasets to determine what analyses can be performed, drafted up a rough outline of the final site. Responsibilities as a data analyst include cleaning up our data and preparing it for mapping, and determining how we are going to utilize our selected datasets. 
++ **Daniel**: Researched on different design elements that could be implemented into the project.
++ **Kristina**: Did outside research about racial demographics in NYC sub-boroughs to provide applicable analysis to our mapping results. Documented sources that will potentially be relevant as we move forward with our analysis. Viewed other sites with similar topics to get inspiration for the design and feel of our website. 
+
