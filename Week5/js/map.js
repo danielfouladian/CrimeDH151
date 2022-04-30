@@ -61,6 +61,19 @@ function readCSV(path){
 			mapCSV(white, whitemarkers, '#661707', 'White');
 			mapCSV(whitehispanic, whitehispanicmarkers, '#380c03', 'White Hispanic');
 
+			let layers = {
+				"Asian/Pacific Islanders": aapimarkers,
+				"American Indian/Alaskan Native": amindmarkers,
+				"Black": blackmarkers,
+				"Black Hispanic": blackhispanicmarkers,
+				"White": whitemarkers,
+				"White Hispanic": whitehispanicmarkers,
+				"Unknown": unknownmarkers,
+				
+			};
+
+			L.control.layers(null, layers).addTo(map)
+
 		}
 	});
 }
@@ -95,21 +108,7 @@ function mapCSV(data, featuregroup, color, name){
 	// fit markers to map
 	map.fitBounds(featuregroup.getBounds())
 
-	let layers = {
-		"Asian/Pacific Islanders": aapimarkers,
-		"American Indian/Alaskan Native": amindmarkers,
-		"Black": blackmarkers,
-		"Black Hispanic": blackhispanicmarkers,
-		"White": whitemarkers,
-		"White Hispanic": whitehispanicmarkers,
-		"Unknown": unknownmarkers,
-		
-	};
-
-	layers[name] = featuregroup;
+	//layers[name] = featuregroup;
 	
-	L.control.layers(null, layers).addTo(map)
+	//L.control.layers(null, layers).addTo(map)
 }
-
-
-
