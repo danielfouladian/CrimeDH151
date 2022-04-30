@@ -9,10 +9,10 @@ body,html {
 }
 
 body {
-	font-family: "Arial";
+	font-family: "Montserrat";
 	display: grid;
 	grid-template-rows: 80px 40px 5fr 0.5fr;
-	grid-template-columns: 30% 70%;
+	grid-template-columns: 25% 75%;
 	grid-template-areas: 
 	"header header"
 	"topnav topnav"
@@ -44,10 +44,11 @@ body {
 
 .sidebar-item{
 	padding: 10px;
-	background: #242424;
+	background: #191919;
 	color: white;
 	margin: 5px;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 .sidebar-item:hover {
@@ -55,6 +56,15 @@ body {
 	color: black;
 }
 
+.sidebar-box{
+	color: white;
+	text-align: center;
+    background-color: #2D4263;
+    border-radius: 10px;
+	padding: 5px;
+	border-color: black;
+
+}
 
 .content {
 	grid-area: content;
@@ -76,12 +86,12 @@ body {
   
 /* Style the links inside the navigation bar */
 .topnav a {
-float: left;
-color: #f2f2f2;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-font-size: 17px;
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 10px 16px;
+	text-decoration: none;
+	font-size: 17px;
 }
 
 /* Change the color of links on hover */
