@@ -96,6 +96,13 @@ function mapCSV(data, featuregroup, color, name){
 	map.fitBounds(featuregroup.getBounds())
 
 	let layers = {
+		"Asian/Pacific Islanders": aapimarkers,
+		"American Indian/Alaskan Native": amindmarkers,
+		"Black": blackmarkers,
+		"Black Hispanic": blackhispanicmarkers,
+		"White": whitemarkers,
+		"White Hispanic": whitehispanicmarkers,
+		"Unknown": unknownmarkers,
 		
 	};
 
