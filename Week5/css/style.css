@@ -22,12 +22,12 @@ body {
 
 .header {
 	grid-area: header;
+	padding:10px;
 	background-color: rgb(0, 0, 0);
 	color: white;
 	font-size: 2em;
 	font-weight: bolder;
-	padding: 5px;
-	padding-left: 20px;
+	text-align: middle;
 }
 
 .center{
