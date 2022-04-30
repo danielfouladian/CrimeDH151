@@ -18,8 +18,6 @@
 
 </head>
 <body>
-    
-
 	<div class="header">
 		<div class ="center">Arrests Across NYC</div>
 	</div>
@@ -28,8 +26,9 @@
 		<p>Click on a button below to explore the locations and types of arrests across the different boroughs of New York City.</p>
 		<P>On the right side of the map you are able to toggle between different racial categories to view the density of their recorded arrests.</P>
 		<p>Hover over a marker on the map to view specific arrest details.</p>
+		<br>
 		<div class="sidebar-box">
-			<h4>BOROUGHS</h4>
+			<h3>BOROUGHS</h3>
 			<div class="sidebar-item" onclick="flyToIndex(40.76762,-73.96820)">Manhattan</div>
 			<div class="sidebar-item" onclick="flyToIndex(40.85086,-73.88282)">The Bronx</div>
 			<div class="sidebar-item" onclick="flyToIndex(40.58154,-74.16021)">Staten Island</div>
@@ -42,10 +41,16 @@
 		<a href="about.html">ABOUT</a>
 		<a href="https://danielfouladian.github.io/CrimeDH151/Week5/proposal">LINK TO PROPOSAL</a>
 	  </div>
-    
-	<div class="content">
+
+	  <style>
+		#wrapper { position: relative; }
+		#over_map { position: absolute; top: 10px; left: 10px; z-index: 99; }
+	 </style>
+	 
+	 <div class="content"> 
 		<div id="map"></div>
 	</div>
+	
 	<div class="footer">
 		Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Arrests-Data-Historic-/8h9b-rp9u/data">NYC Open Data</a>
 	</div>

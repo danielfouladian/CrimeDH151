@@ -27,7 +27,7 @@ $( document ).ready(function() {
 function createMap(lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
 
-	L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
 }
@@ -53,13 +53,13 @@ function readCSV(path){
 			whitehispanic = globaldata.data.filter(data => data.PERP_RACE=='WHITE HISPANIC');
 			// map the data
 			
-			mapCSV(aapi, aapimarkers, '#ffd5cc', 'Asian/Pacific Islanders');
-			mapCSV(amind, amindmarkers, '#e8a192', 'American Indian/Alaskan Native');
-			mapCSV(black, blackmarkers, '#d6634b', 'Black');
-			mapCSV(blackhispanic, blackhispanicmarkers, '#d44426', 'Black Hispanic');
-			mapCSV(unknown, unknownmarkers, '#961c03', 'Unknown');
-			mapCSV(white, whitemarkers, '#661707', 'White');
-			mapCSV(whitehispanic, whitehispanicmarkers, '#380c03', 'White Hispanic');
+			mapCSV(aapi, aapimarkers, '#F5D0CC', 'Asian/Pacific Islanders');
+			mapCSV(amind, amindmarkers, '#ECA299', 'American Indian/Alaskan Native');
+			mapCSV(black, blackmarkers, '#E27367', 'Black');
+			mapCSV(blackhispanic, blackhispanicmarkers, '#D94534', 'Black Hispanic');
+			mapCSV(unknown, unknownmarkers, '#BF2B1A', 'Unknown');
+			mapCSV(white, whitemarkers, '#AF4034', 'White');
+			mapCSV(whitehispanic, whitehispanicmarkers, '#680B01', 'White Hispanic');
 
 			let layers = {
 				"Asian/Pacific Islanders": aapimarkers,
