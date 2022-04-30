@@ -55,5 +55,7 @@ This data will be exported as a CSV from the given link and geocoded using Javas
 ## UX Components
 ### Figma Wireframes
 
+![](home.png)
+![](about.png)
 
 
