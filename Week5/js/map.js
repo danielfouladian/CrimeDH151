@@ -126,7 +126,10 @@ function getGeoJSON(){
 		geojson_data = data;
 
 		// call the map function
-		mapGeoJSON('asian') // add a field to be used
+		mapGeoJSON('asian')
+		mapGeoJSON('black')
+		mapGeoJSON('hispanic')
+		mapGeoJSON('white') // add a field to be used
 	})
 }
 
