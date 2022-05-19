@@ -19,10 +19,16 @@ let path = "data/arrest.csv";
 let aapimarkers = L.featureGroup();
 let amindmarkers = L.featureGroup();
 let blackmarkers = L.featureGroup();
-let blackhispanicmarkers = L.featureGroup();
+let hispanicmarkers = L.featureGroup();
 let unknownmarkers = L.featureGroup();
 let whitemarkers = L.featureGroup();
-let whitehispanicmarkers = L.featureGroup();
+
+let aapi;
+let amind;
+let black;
+let hispanic;
+let unknown;
+let white;
 
 // initialize
 $( document ).ready(function() {
@@ -55,28 +61,30 @@ function readCSV(path){
 			aapi = globaldata.data.filter(data => data.PERP_RACE=='ASIAN / PACIFIC ISLANDER');
 			amind = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE');
 			black = globaldata.data.filter(data => data.PERP_RACE=='BLACK');
-			blackhispanic = globaldata.data.filter(data => data.PERP_RACE=='BLACK HISPANIC');
+			hispanic = globaldata.data.filter(data => data.PERP_RACE=='BLACK HISPANIC' | data.PERP_RACE=='WHITE HISPANIC');
 			unknown = globaldata.data.filter(data => data.PERP_RACE=='UNKNOWN');
 			white = globaldata.data.filter(data => data.PERP_RACE=='WHITE');
-			whitehispanic = globaldata.data.filter(data => data.PERP_RACE=='WHITE HISPANIC');
+			//whitehispanic = globaldata.data.filter(data => data.PERP_RACE=='WHITE HISPANIC');
 			// map the data
 			
 			mapCSV(aapi, aapimarkers, '#F5D0CC', 'Asian/Pacific Islanders');
-			mapCSV(amind, amindmarkers, '#ECA299', 'American Indian/Alaskan Native');
+			// mapCSV(amind, amindmarkers, '#ECA299', 'American Indian/Alaskan Native');
 			mapCSV(black, blackmarkers, '#E27367', 'Black');
-			mapCSV(blackhispanic, blackhispanicmarkers, '#D94534', 'Black Hispanic');
-			mapCSV(unknown, unknownmarkers, '#BF2B1A', 'Unknown');
+			mapCSV(hispanic, hispanicmarkers, 'E27367', 'Hispanic')
+			// mapCSV(blackhispanic, blackhispanicmarkers, '#D94534', 'Black Hispanic');
+			// mapCSV(unknown, unknownmarkers, '#BF2B1A', 'Unknown');
 			mapCSV(white, whitemarkers, '#AF4034', 'White');
-			mapCSV(whitehispanic, whitehispanicmarkers, '#680B01', 'White Hispanic');
+			// mapCSV(whitehispanic, whitehispanicmarkers, '#680B01', 'White Hispanic');
 
 			let layers = {
 				"Asian/Pacific Islanders": aapimarkers,
-				"American Indian/Alaskan Native": amindmarkers,
+				//"American Indian/Alaskan Native": amindmarkers,
 				"Black": blackmarkers,
-				"Black Hispanic": blackhispanicmarkers,
+				//"Black Hispanic": blackhispanicmarkers,
 				"White": whitemarkers,
-				"White Hispanic": whitehispanicmarkers,
-				"Unknown": unknownmarkers,
+				"Hispanic": hispanicmarkers,
+				//"White Hispanic": whitehispanicmarkers,
+				//"Unknown": unknownmarkers,
 				
 			};
 
@@ -87,7 +95,7 @@ function readCSV(path){
 }
 
 function mapCSV(data, featuregroup, color, name){
-	
+
 	// circle options
 	let circleOptions = {
 		radius: 5,
@@ -110,14 +118,14 @@ function mapCSV(data, featuregroup, color, name){
 	})
 
 	// add featuregroup to map
-	featuregroup.addTo(map)
+	//featuregroup.addTo(map)
 
 	// fit markers to map
-	map.fitBounds(featuregroup.getBounds())
+	//map.fitBounds(featuregroup.getBounds())
 }
 
 // function to get the geojson data
-function getGeoJSON(){
+function getGeoJSON(field){
 
 	$.getJSON(geojsonPath,function(data){
 		console.log(data)
@@ -126,10 +134,10 @@ function getGeoJSON(){
 		geojson_data = data;
 
 		// call the map function
-		mapGeoJSON('asian')
-		mapGeoJSON('black')
-		mapGeoJSON('hispanic')
-		mapGeoJSON('white') // add a field to be used
+		mapGeoJSON(field)
+		// mapGeoJSON('black')
+		// mapGeoJSON('hispanic')
+		// mapGeoJSON('white') // add a field to be used
 	})
 }
 
@@ -154,7 +162,7 @@ function mapGeoJSON(field){
 	// set up the "brew" options
 	brew.setSeries(values);
 	brew.setNumClasses(5);
-	brew.setColorCode('YlOrRd');
+	brew.setColorCode('Reds');
 	brew.classify('equal_interval');
 
 	// create the layer and add to map
@@ -266,3 +274,96 @@ function createInfoPanel(){
 
 	info_panel.addTo(map);
 }
+
+$("#asian").click(function(event){
+	event.preventDefault();
+	getGeoJSON('asian');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	map.addLayer(aapimarkers);
+	bringToFront(aapimarkers);
+	$(this).addClass('selected');
+});
+
+$("#black").click(function(event){
+	event.preventDefault();
+	getGeoJSON('black');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	map.addLayer(blackmarkers);
+	$(this).addClass('selected');
+});
+
+$("#hispanic").click(function(event){
+	event.preventDefault();
+	getGeoJSON('hispanic');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	map.addLayer(hispanicmarkers);
+	$(this).addClass('selected');
+});
+
+$("#white").click(function(event){
+	event.preventDefault();
+	getGeoJSON('white');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	map.addLayer(whitemarkers);
+	$(this).addClass('selected');
+});
