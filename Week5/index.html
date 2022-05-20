@@ -18,6 +18,7 @@
 	
 	<!-- font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Avenir">
 
 	<!-- classy brew -->
 	<script src="js/classybrew.js"></script>
@@ -27,14 +28,14 @@
 <body>
 	<div class="header">
 		<div class="center"> 
-		  About the Team
+		  New York Arrests 
 		  <img src="pictures/logo.png" style="float: right;" width=80 title="Avengers of Data"/>
 		</div>
 		</div>
 	<div class="sidebar">
 		<h3>HOW TO USE THE MAP</h3> 
-		<p>Click on a button below to explore the locations and types of arrests across the different boroughs of New York City.</p>
-		<P>On the right side of the map you are able to toggle between different racial categories to view the density of their recorded arrests.</P>
+		<p>Click on the buttons below to explore arrests by demographic group across NYC. The map will also generate the population density for the selected demographic group across each of the five boroughs</p>
+		<P>Hover over a borough to view the population proportion for the selected demographic group.</P>
 		<p>Hover over a marker on the map to view specific arrest details.</p>
 		<br>
 		<div class="sidebar-box">
@@ -43,10 +44,18 @@
 			<div class="sidebar-item" onclick="getGeoJSON('black')">Black</div>
 			<div class="sidebar-item" onclick="getGeoJSON('hispanic')">Hispanic</div>
 			<div class="sidebar-item" onclick="getGeoJSON('white')">White</div> -->
-            <div class="sidebar-item"><a id="asian" href="#">Asian</a></div>
+           
+			<!-- <div class="sidebar-item"><a id="asian" href="#">Asian</a></div>
             <div class="sidebar-item"><a id="black" href="#">Black</a></div>
             <div class="sidebar-item"><a id="hispanic" href="#">Hispanic</a></div>
             <div class="sidebar-item"><a id="white" href="#">White</a></div>
+			<div class="sidebar-item"><a id="other" href="#">Other</a></div> -->
+
+			<div class="sidebar-item" id="asian">Asian</div>
+            <div class="sidebar-item" id="black">Black</div>
+            <div class="sidebar-item" id="hispanic">Hispanic</div>
+            <div class="sidebar-item" id="white">White</div>
+			<div class="sidebar-item" id="other">Other</div>
 		</div>
 	</div>
 	<div class="topnav">

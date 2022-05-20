@@ -22,6 +22,7 @@ let blackmarkers = L.featureGroup();
 let hispanicmarkers = L.featureGroup();
 let unknownmarkers = L.featureGroup();
 let whitemarkers = L.featureGroup();
+let othermarkers = L.featureGroup();
 
 let aapi;
 let amind;
@@ -29,6 +30,7 @@ let black;
 let hispanic;
 let unknown;
 let white;
+let other;
 
 // initialize
 $( document ).ready(function() {
@@ -59,21 +61,23 @@ function readCSV(path){
 			console.log(data);
 			globaldata = data;
 			aapi = globaldata.data.filter(data => data.PERP_RACE=='ASIAN / PACIFIC ISLANDER');
-			amind = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE');
+			//amind = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE');
 			black = globaldata.data.filter(data => data.PERP_RACE=='BLACK');
 			hispanic = globaldata.data.filter(data => data.PERP_RACE=='BLACK HISPANIC' | data.PERP_RACE=='WHITE HISPANIC');
-			unknown = globaldata.data.filter(data => data.PERP_RACE=='UNKNOWN');
+			//unknown = globaldata.data.filter(data => data.PERP_RACE=='UNKNOWN');
 			white = globaldata.data.filter(data => data.PERP_RACE=='WHITE');
+			other = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE' | data.PERP_RACE=='UNKNOWN');
 			//whitehispanic = globaldata.data.filter(data => data.PERP_RACE=='WHITE HISPANIC');
 			// map the data
 			
-			mapCSV(aapi, aapimarkers, '#F5D0CC', 'Asian/Pacific Islanders');
+			mapCSV(aapi, aapimarkers, '#1681c4', 'Asian/Pacific Islanders');
 			// mapCSV(amind, amindmarkers, '#ECA299', 'American Indian/Alaskan Native');
-			mapCSV(black, blackmarkers, '#E27367', 'Black');
-			mapCSV(hispanic, hispanicmarkers, 'E27367', 'Hispanic')
+			mapCSV(black, blackmarkers, '#1667c4', 'Black');
+			mapCSV(hispanic, hispanicmarkers, '#164dc4', 'Hispanic')
 			// mapCSV(blackhispanic, blackhispanicmarkers, '#D94534', 'Black Hispanic');
 			// mapCSV(unknown, unknownmarkers, '#BF2B1A', 'Unknown');
-			mapCSV(white, whitemarkers, '#AF4034', 'White');
+			mapCSV(white, whitemarkers, '#1633c4', 'White');
+			mapCSV(other, othermarkers, '#1b16c4', 'Other');
 			// mapCSV(whitehispanic, whitehispanicmarkers, '#680B01', 'White Hispanic');
 
 			let layers = {
@@ -83,12 +87,13 @@ function readCSV(path){
 				//"Black Hispanic": blackhispanicmarkers,
 				"White": whitemarkers,
 				"Hispanic": hispanicmarkers,
+				"Other": othermarkers,
 				//"White Hispanic": whitehispanicmarkers,
 				//"Unknown": unknownmarkers,
 				
 			};
 
-			L.control.layers(null, layers).addTo(map)
+			//L.control.layers(null, layers).addTo(map)
 
 		}
 	});
@@ -152,7 +157,7 @@ function mapGeoJSON(field){
 	fieldtomap = field;
 
 	// create an empty array
-	let values = [];
+	let values = [0,1];
 
 	// based on the provided field, enter each value into the array
 	geojson_data.features.forEach(function(item,index){
@@ -176,6 +181,8 @@ function mapGeoJSON(field){
 	createLegend();
 
 	createInfoPanel();
+
+	geojson_layer.bringToBack();
 }
 
 function getStyle(feature){
@@ -193,7 +200,7 @@ function createLegend(){
 	legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend'),
 		breaks = brew.getBreaks(),
-		labels = [],
+		labels = ['<strong>Population Proportion</strong>'],
 		from, to;
 		
 		for (var i = 0; i < breaks.length; i++) {
@@ -234,7 +241,7 @@ function highlightFeature(e) {
 	});
 
 	// if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-	// 	layer.bringToFront();
+	 	//layer.bringToBack();
 	// }
 
 	info_panel.update(layer.feature.properties)
@@ -268,14 +275,17 @@ function createInfoPanel(){
 		// if feature is not highlighted
 		else
 		{
-			this._div.innerHTML = 'Hover over a borough';
+			this._div.innerHTML = 'Hover over a borough to see population density for selected demographic group.';
 		}
 	};
 
 	info_panel.addTo(map);
 }
 
-$("#asian").click(function(event){
+// Home Page Buttons using ID
+var asianbutton = document.getElementById('asian')
+
+asianbutton.onclick = function(event){
 	event.preventDefault();
 	getGeoJSON('asian');
 	if(map.hasLayer(aapimarkers)) {
@@ -294,12 +304,18 @@ $("#asian").click(function(event){
 		$(this).removeClass('selected');
 		map.removeLayer(whitemarkers);
 	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
 	map.addLayer(aapimarkers);
-	bringToFront(aapimarkers);
+	aapimarkers.bringToFront();
 	$(this).addClass('selected');
-});
+}
 
-$("#black").click(function(event){
+var blackbutton = document.getElementById('black')
+
+blackbutton.onclick = function(event){
 	event.preventDefault();
 	getGeoJSON('black');
 	if(map.hasLayer(aapimarkers)) {
@@ -318,11 +334,18 @@ $("#black").click(function(event){
 		$(this).removeClass('selected');
 		map.removeLayer(whitemarkers);
 	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
 	map.addLayer(blackmarkers);
+	blackmarkers.bringToFront();
 	$(this).addClass('selected');
-});
+}
 
-$("#hispanic").click(function(event){
+var hispanicbutton = document.getElementById('hispanic')
+
+hispanicbutton.onclick = function(event){
 	event.preventDefault();
 	getGeoJSON('hispanic');
 	if(map.hasLayer(aapimarkers)) {
@@ -341,11 +364,18 @@ $("#hispanic").click(function(event){
 		$(this).removeClass('selected');
 		map.removeLayer(whitemarkers);
 	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
 	map.addLayer(hispanicmarkers);
+	hispanicmarkers.bringToFront();
 	$(this).addClass('selected');
-});
+}
 
-$("#white").click(function(event){
+var whitebutton = document.getElementById('white')
+
+whitebutton.onclick = function(event){
 	event.preventDefault();
 	getGeoJSON('white');
 	if(map.hasLayer(aapimarkers)) {
@@ -364,6 +394,182 @@ $("#white").click(function(event){
 		$(this).removeClass('selected');
 		map.removeLayer(whitemarkers);
 	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
 	map.addLayer(whitemarkers);
+	whitemarkers.bringToFront();
 	$(this).addClass('selected');
-});
+}
+
+var otherbutton = document.getElementById('other')
+
+otherbutton.onclick = function(event){
+	event.preventDefault();
+	getGeoJSON('other');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
+	map.addLayer(othermarkers);
+	othermarkers.bringToFront();
+	$(this).addClass('selected');
+}
+
+// Home Page Demographics Button Commands
+// $("#asian").click(function(event){
+// 	event.preventDefault();
+// 	getGeoJSON('asian');
+// 	if(map.hasLayer(aapimarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(aapimarkers);
+// 	} 
+// 	if(map.hasLayer(blackmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(blackmarkers);
+// 	} 
+// 	if(map.hasLayer(hispanicmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(hispanicmarkers);
+// 	} 
+// 	if(map.hasLayer(whitemarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(whitemarkers);
+// 	} 
+// 	if(map.hasLayer(othermarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(othermarkers);
+// 	} 
+// 	map.addLayer(aapimarkers);
+// 	aapimarkers.bringToFront();
+// 	$(this).addClass('selected');
+// });
+
+// $("#black").click(function(event){
+// 	event.preventDefault();
+// 	getGeoJSON('black');
+// 	if(map.hasLayer(aapimarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(aapimarkers);
+// 	} 
+// 	if(map.hasLayer(blackmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(blackmarkers);
+// 	} 
+// 	if(map.hasLayer(hispanicmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(hispanicmarkers);
+// 	} 
+// 	if(map.hasLayer(whitemarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(whitemarkers);
+// 	} 
+// 	if(map.hasLayer(othermarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(othermarkers);
+// 	} 
+// 	map.addLayer(blackmarkers);
+// 	blackmarkers.bringToFront();
+// 	$(this).addClass('selected');
+// });
+
+// $("#hispanic").click(function(event){
+// 	event.preventDefault();
+// 	getGeoJSON('hispanic');
+// 	if(map.hasLayer(aapimarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(aapimarkers);
+// 	} 
+// 	if(map.hasLayer(blackmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(blackmarkers);
+// 	} 
+// 	if(map.hasLayer(hispanicmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(hispanicmarkers);
+// 	} 
+// 	if(map.hasLayer(whitemarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(whitemarkers);
+// 	} 
+// 	if(map.hasLayer(othermarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(othermarkers);
+// 	} 
+// 	map.addLayer(hispanicmarkers);
+// 	hispanicmarkers.bringToFront()
+// 	$(this).addClass('selected');
+// });
+
+// $("#white").click(function(event){
+// 	event.preventDefault();
+// 	getGeoJSON('white');
+// 	if(map.hasLayer(aapimarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(aapimarkers);
+// 	} 
+// 	if(map.hasLayer(blackmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(blackmarkers);
+// 	} 
+// 	if(map.hasLayer(hispanicmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(hispanicmarkers);
+// 	} 
+// 	if(map.hasLayer(whitemarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(whitemarkers);
+// 	} 
+// 	if(map.hasLayer(othermarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(othermarkers);
+// 	} 
+// 	map.addLayer(whitemarkers);
+// 	whitemarkers.bringToFront();
+// 	$(this).addClass('selected');
+// });
+
+// $("#other").click(function(event){
+// 	event.preventDefault();
+// 	getGeoJSON('white');
+// 	if(map.hasLayer(aapimarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(aapimarkers);
+// 	} 
+// 	if(map.hasLayer(blackmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(blackmarkers);
+// 	} 
+// 	if(map.hasLayer(hispanicmarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(hispanicmarkers);
+// 	} 
+// 	if(map.hasLayer(whitemarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(whitemarkers);
+// 	} 
+// 	if(map.hasLayer(othermarkers)) {
+// 		$(this).removeClass('selected');
+// 		map.removeLayer(othermarkers);
+// 	} 
+// 	map.addLayer(othermarkers);
+// 	othermarkers.bringToFront();
+// 	$(this).addClass('selected');
+// });
