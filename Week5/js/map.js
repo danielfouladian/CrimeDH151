@@ -433,6 +433,33 @@ otherbutton.onclick = function(event){
 	$(this).addClass('selected');
 }
 
+var resetbutton = document.getElementById('reset')
+
+resetbutton.onclick = function(event){
+	event.preventDefault();
+	getGeoJSON('reset');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
+}
+
 // Home Page Demographics Button Commands
 // $("#asian").click(function(event){
 // 	event.preventDefault();

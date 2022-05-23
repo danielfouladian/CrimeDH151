@@ -1,5 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Avenir);
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,700;1,400&family=Poppins:wght@100;400;700&family=Syne+Mono&display=swap');
 
 body,html {
 	margin:0;
@@ -13,20 +12,21 @@ body,html {
 
 body {
 	display: grid;
+	background-color: #0f0e17;
 	grid-template-rows: 80px 40px 5fr 0.2fr;
 	grid-template-columns: 25% 75%;
 	grid-template-areas: 
 	"header header"
 	"topnav topnav"
 	"sidebar content"
-	"footer content";
+	"footer footer";
 }
 
 .header {
 	grid-area: header;
-	background-color: rgb(0, 0, 0);
+	background-color:#0f0e17;
 	color: white;
-	font-family: "Montserrat";
+	font-family: 'Syne Mono', monospace;
 	font-size: 2em;
 	font-weight: bolder;
 	padding: 5px;
@@ -34,42 +34,59 @@ body {
 }
 
 .center{
-	padding: 15px 0 15px;
+	padding: 10px 0;
 }
 
 .sidebar {
 	color: white;
 	grid-area: sidebar;
-	font-family: "Arial";
+	border-color: #F2F5F1;
+	border-width: 10px;
+	font-family: "Poppins";
 	padding-top: 15px;
 	padding-left:20px;
 	padding-right: 20px;
-	background-color: rgb(0, 0, 0);
+	background-color: #0f0e17;
 	overflow: auto;
+	font-size: small;
 }
 
 .sidebar-item{
-	padding: 10px;
-	background: #191919;
+	padding: 8px;
+	background:#094067;
 	color: white;
-	margin: 6px;
+	font: "Poppins";
+	font-weight: 700;
+	margin: 5px;
 	cursor: pointer;
 	border-radius: 5px;
 }
 
 .sidebar-item:hover {
-	background: #e0e0e0;
-	color: black;
+	background: #90b4ce;
+	color: white;
 	font-size: 105%;
 	transition: all 0.5s ease-in-out;
 }
 
-.sidebar-box{
-	color: white;
+.reset-item{
+	padding: 8px;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.reset-item:hover {
+	font-size: 105%;
+	font-weight: 700;
+	transition: all 0.5s ease-in-out;
+}
+
+.sidebar-box {
+	color: #fffffe;
 	text-align: center;
-    background-color: #2D4263;
-    border-radius: 10px;
-	padding: 5px;
+    background-color: #121629;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 .content {
@@ -78,6 +95,7 @@ body {
 
 .footer {
 	grid-area: footer;
+	font-family: "Poppins";
 	padding: 10px;
 	color: white;
 	background-color: rgb(22, 22, 22);
@@ -86,7 +104,7 @@ body {
 /* Add a black background color to the top navigation */
 .topnav {
 	grid-area: topnav;
-	background-color: rgb(22, 22, 22);
+	background-color: #121629;
 	overflow: hidden;
   }
   
