@@ -86,6 +86,8 @@ body {
 	text-align: center;
     background-color: #121629;
 	padding: 10px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 	border-radius: 10px;
 }
 
@@ -104,7 +106,7 @@ body {
 /* Add a black background color to the top navigation */
 .topnav {
 	grid-area: topnav;
-	background-color: #121629;
+	background-color: #094067;
 	overflow: hidden;
   }
   
@@ -163,3 +165,36 @@ body {
 	margin-right: 8px;
 	opacity: 0.7;
 }
+
+/* Slideshow container */
+.slideshow-container {
+	position: relative;
+	background: black;
+  }
+  
+  /* Slides */
+  .mySlides {
+	display: none;
+	padding: 10px;
+	text-align: left;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+	cursor: pointer;
+	position: relative;
+	padding: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #cecece;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 5px 5px 5px 5px;
+	user-select: none;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+	background-color: #555;
+	color: white;
+  }
