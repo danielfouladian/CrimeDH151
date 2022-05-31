@@ -99,6 +99,7 @@ function readCSV(path){
 	});
 }
 
+
 function mapCSV(data, featuregroup, color, name){
 
 	// circle options
@@ -431,6 +432,60 @@ otherbutton.onclick = function(event){
 	map.addLayer(othermarkers);
 	othermarkers.bringToFront();
 	$(this).addClass('selected');
+}
+
+var resetbutton = document.getElementById('reset')
+
+resetbutton.onclick = function(event){
+	event.preventDefault();
+	getGeoJSON('reset');
+	if(map.hasLayer(aapimarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(aapimarkers);
+	} 
+	if(map.hasLayer(blackmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(blackmarkers);
+	} 
+	if(map.hasLayer(hispanicmarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(hispanicmarkers);
+	} 
+	if(map.hasLayer(whitemarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(whitemarkers);
+	} 
+	if(map.hasLayer(othermarkers)) {
+		$(this).removeClass('selected');
+		map.removeLayer(othermarkers);
+	} 
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
 }
 
 // Home Page Demographics Button Commands

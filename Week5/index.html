@@ -23,23 +23,51 @@
 	<!-- classy brew -->
 	<script src="js/classybrew.js"></script>
 
+	<!-- apex charts -->
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
 </head>
 <body>
 	<div class="header">
 		<div class="center"> 
-		  New York Arrests 
+		  New York Arrests [May ~ June 2020]
 		  <img src="pictures/logo.png" style="float: right;" width=80 title="Avengers of Data"/>
 		</div>
 		</div>
 	<div class="sidebar">
-		<h3>HOW TO USE THE MAP</h3> 
-		<p>Click on the buttons below to explore arrests by demographic group across NYC. The map will also generate the population density for the selected demographic group across each of the five boroughs</p>
-		<P>Hover over a borough to view the population proportion for the selected demographic group.</P>
-		<p>Hover over a marker on the map to view specific arrest details.</p>
-		<br>
+		<!-- Slideshow container -->
+	<div class="slideshow">
+
+		<!-- Full-width slides/quotes -->
+			<div class="mySlides">
+				<h3>HOW TO USE THE MAP</h3> 
+				<p>Click on the buttons below to explore arrests by demographic group across NYC. The map will also generate the population density for the selected demographic group across each of the five boroughs</p>
+				<P>Hover over a borough to view the population proportion for the selected demographic group.</P>
+				<p>Hover over a marker on the map to view specific arrest details.</p>
+				<br>
+			</div>
+	  
+			<div class="mySlides">
+				<h3>ABOUT THE MAP</h3>
+				<p>Through exploration of our maproom, users can interact with a visual representation of arrests of varied race groups in New York, raising questions about how some race groups are more subjected to criminalization.</p>
+				<P>We focus our arrest data between May and June 2020, a month of great upheaval in the Black Lives Matter Movement, in order to analyze the criminalization of protest in the fight for racial justice. </p>
+			</div>
+	  
+			<div class="mySlides">
+				<h3>IMPORTANCE OF THIS PROJECT</h3>
+				<p>Our New York Crime data spans from May of 2020 to July 2020, shedding light on not only the types of arrests happening during this time, but what race the police officer perceived the perpetrator to be. As we focus our data on this time period, we hope to gain a better understanding of racially targeted police violence that occurs in New York. We also will see numeric values of perpetrator arrests along with their race, revealing the many protesters, particularly those of color, who were arrested at these protests for fighting against racism and anti-black violence.
+				</p>
+			</div>
+
+		<!-- Next/prev buttons -->
+		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		<a class="next" onclick="plusSlides(1)">&#10095;</a>
+	  </div>
+
+	<p></p>
 		<div class="sidebar-box">
-			<h3>Demographic Groups</h3>
+			<h2>Demographic Groups</h2>
 			<!-- <div class="sidebar-item" onclick="getGeoJSON('asian')">Asian</div>
 			<div class="sidebar-item" onclick="getGeoJSON('black')">Black</div>
 			<div class="sidebar-item" onclick="getGeoJSON('hispanic')">Hispanic</div>
@@ -50,13 +78,14 @@
             <div class="sidebar-item"><a id="hispanic" href="#">Hispanic</a></div>
             <div class="sidebar-item"><a id="white" href="#">White</a></div>
 			<div class="sidebar-item"><a id="other" href="#">Other</a></div> -->
-
 			<div class="sidebar-item" id="asian">Asian</div>
             <div class="sidebar-item" id="black">Black</div>
             <div class="sidebar-item" id="hispanic">Hispanic</div>
             <div class="sidebar-item" id="white">White</div>
 			<div class="sidebar-item" id="other">Other</div>
+			<div class="reset-item" id="reset"><i>Click here to reset</i></div>
 		</div>
+
 	</div>
 	<div class="topnav">
 		<a href="index.html">MAP</a>
@@ -78,6 +107,5 @@
 	</div>
 
 	<script src="js/map.js"></script>
-
 </body>
 </html>
