@@ -167,8 +167,9 @@ body {
 }
 
 .slidebuttons {
-	margin: auto;
-	width: 25%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Slideshow container */
@@ -196,6 +197,7 @@ body {
 	font-size: 20px;
 	border-radius: 5px 5px 5px 5px;
 	user-select: none;
+	margin: auto;
   }
   
   /* On hover, add a black background color with a little bit see-through */

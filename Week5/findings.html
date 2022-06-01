@@ -31,7 +31,7 @@
 <body>
 	<div class="header">
 		<div class="headertext"> 
-		  New York Arrests [May ~ June 2020]
+			New York Arrests [June 2020]
 		  <img src="pictures/logo.png" style="float: right;" width=80 title="Avengers of Data"/>
 		</div>
 		</div>
@@ -41,12 +41,13 @@
         <a href="findings.html">FINDINGS</a>
 	</div>
     <div class="content">
-        <div class="content-text">
-            <h2>FINDINGS</h2>
-            <p>
-                Our team broke down the dataset to extract detailed insights on the arrests for each borough. Click on a button below to explore the findings specific to each borough. Scroll below to see how we performed this data analysis.
-            </p>
-        </div>
+		<h2>FINDINGS</h2>
+		<p>
+			Our team broke down the dataset to extract detailed insights on the arrests for each borough. Click on a button below to explore the findings specific to each borough. Scroll below to see how we performed this data analysis.
+		</p>
+		<br>
+		<br>
+		<br>
         <div class="button-nav">
             <button class="styled" onclick="window.location.href='bronx.html'">Bronx</button>
             <button class="styled" onclick="window.location.href='brooklyn.html'">Brooklyn</button>
@@ -54,6 +55,35 @@
             <button class="styled" onclick="window.location.href='queens.html'">Queens</button>
             <button class="styled" onclick="window.location.href='statenisland.html'">Staten Island</button>
         </div>
-    </div>
+		<br>
+		<br>
+		<br>
+		<h2>DATA PREPARATION</h2>
+		<p>
+			To prepare the data, our team first queried the correct date range for arrests on NYC Open Data. We first queried all the arrest data between June 1st, 2019 and June 30th, 2019, then exported the results as a CSV file. Next we queried arrest data between June 1st, 2020 and June 30th, 2020, and exported that as well as to a CSV. 
+		</p>
+		<p>
+			We then used Excel to create pivot tables that allowed us to break down the number of arrests by demographic group in each borough. Using the pivot tables, we were then able to calculate the proportions that were used to create our pie chart and bar charts.
+		</p>
+		<h2>CONCLUSION</h2>
+		<p>
+			After both a quantitative and qualitative analysis of our data, there are a few conclusions we can make. 
+		</p>
+		<p>
+			From our map, it is evident that as we click through the different demographic groups, the Black and Hispanic layers are significantly more concentrated with arrest markers across all five boroughs, despite the overall population proportion for these demographic groups being rather low in some of these boroughs.  
+		</p>
+		<p>
+			Likewise, our quantative analysis highlighted the exact percentages by which the arrest proportion and population proportion differed for these demographic groups. More often than not, Black and Hispanic individuals were disproportionately arrested in NYC boroughs. Even though they may have comprised only a small percentage of the residential population in the area, they made up the majority of the arrested population. 
+			 
+		</p>
+		<p>
+			When considering these trends in the context of police violence and racial profiling, it is reasonble to conclude that black and brown individuals are unfairly targeted by NYPD. With this knowledge in hand, it is important efforts are made to combat the profiling of marginalized communities. 
+		</p>
+		<h2>LIMITATIONS</h2>
+		<p>
+			There are a few limitations to note about our mapping analysis and conclusion. Since we only used data from a single month to generate our map, it is possible that the patterns indicated are not overall trends, but rather instances that occured by random chance. Furthermore, it is possible that our arrest proportions calculated in June 2019 and June 2020 are not consistent with other months. As a result, it is important to take care when extrapolating from our findings. 
+		</p>
+	</div>
+
 </body>
 </html>

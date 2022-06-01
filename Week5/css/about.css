@@ -10,6 +10,11 @@ body,html {
 	height: 100%;
 }
 
+td p{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 body {
 	font-family: "Montserrat";
 	display: grid;
@@ -38,7 +43,8 @@ body {
 
 .content {
 	grid-area: content;
-	padding: 25px;
+	padding-left: 75px;
+	padding-right: 75px;
 }
 
 .footer {
