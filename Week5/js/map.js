@@ -226,7 +226,7 @@ function onEachFeature(feature, layer) {
 	layer.on({
 		mouseover: highlightFeature,
 		mouseout: resetHighlight,
-		click: zoomToFeature
+		click: openFeature
 	});
 }
 
@@ -254,10 +254,15 @@ function resetHighlight(e) {
 	info_panel.update() // resets infopanel
 }
 
-// on mouse click on a feature, zoom in to it
-function zoomToFeature(e) {
-	map.fitBounds(e.target.getBounds());
+//on mouse click on a feature, open window with info
+function openFeature(e) {
+	window.open(e.target.feature.properties.win_url)
 }
+
+// on mouse click on a feature, zoom in to it
+// function zoomToFeature(e) {
+// 	map.fitBounds(e.target.getBounds());
+// }
 
 function createInfoPanel(){
 
@@ -271,7 +276,7 @@ function createInfoPanel(){
 	info_panel.update = function (properties) {
 		// if feature is highlighted
 		if(properties){
-			this._div.innerHTML = `<b>${properties.name}</b><br>${fieldtomap}: ${properties[fieldtomap]}`;
+			this._div.innerHTML = `<b>${properties.name}</b><br>${fieldtomap}: <b>${properties[fieldtomap]}</b><br>Click on the borough for more info.`;
 		}
 		// if feature is not highlighted
 		else

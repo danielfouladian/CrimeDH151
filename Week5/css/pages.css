@@ -38,7 +38,17 @@ body {
 
 .content {
 	grid-area: content;
+	background-color:#0f0e17;
 	padding: 25px;
+	color: white;
+	font-family: "Montserrat";
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
 
 .footer {
@@ -83,69 +93,43 @@ body {
 	color: white;
 	font-weight: bold;
 }
-
-/* legend styles */
-.info {
-	padding: 6px 8px;
-	font: 14px/16px Arial, Helvetica, sans-serif;
-	background: white;
-	background: rgba(255,255,255,0.8);
-	box-shadow: 0 0 15px rgba(0,0,0,0.2);
-	border-radius: 5px;
-	min-width: 250px;
-	min-height: 10px;
-}
-.info h4 {
-	margin: 0 0 5px;
-	color: #777;
-}
-
-.legend {
-	line-height: 18px;
-	color: #555;
-}
-.legend i {
-	width: 18px;
-	height: 18px;
-	float: left;
-	margin-right: 8px;
-	opacity: 0.7;
-}
-
-.slidebuttons {
-	margin: auto;
-	width: 25%;
-}
-
-/* Slideshow container */
-.slideshow-container {
-	position: relative;
-	background: black;
-  }
   
-  /* Slides */
-  .mySlides {
-	display: none;
-	padding: 10px;
-	text-align: left;
-  }
-  
-  /* Next & previous buttons */
-  .prev, .next {
-	cursor: pointer;
-	position: relative;
-	padding: 15px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	color: #cecece;
-	font-weight: bold;
-	font-size: 20px;
-	border-radius: 5px 5px 5px 5px;
-	user-select: none;
-  }
-  
-  /* On hover, add a black background color with a little bit see-through */
-  .prev:hover, .next:hover {
-	background-color: #555;
+.img {
+	max-width: 50%;
+	height: auto;
+}
+
+.styled {
+	padding: 20px;
+	background:#094067;
 	color: white;
-  }
+	font: "Poppins";
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 10px;
+	margin: auto;
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+}
+
+.styled:hover {
+	background: #90b4ce;
+	color: white;
+	font-size: 105%;
+	transition: all 0.5s ease-in-out;
+}
+
+.button-nav{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.caption{
+	background: white;
+	color: #0f0e17;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 20px;
+	margin: auto;
+}
