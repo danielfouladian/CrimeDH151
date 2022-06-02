@@ -120,7 +120,84 @@ let protest = [
 		'lon':'-73.92412106252507',
 		'url':'pictures/astoriapark.jpg'
 	},
-	
+	{
+		'title':'Fordham Heights',
+		'lat':'40.85739108245312',
+		'lon':'-73.89997981196863',
+		'url':'pictures/fordhamheights.jpg'
+	},
+	{
+		'title':'South Bronx',
+		'lat':'40.81714538359536',
+		'lon':'-73.91924770229308',
+		'url':'pictures/southbronx.jpg'
+	},
+	{
+		'title':'Mott Haven',
+		'lat':'40.80871955221862',
+		'lon':'-73.92246985689256',
+		'url':'pictures/motthaven.jpg'
+	},
+	{
+		'title':'Harlem',
+		'lat':'40.80941594856881',
+		'lon':'-73.94824837873159',
+		'url':'pictures/harlem.png'
+	},
+	{
+		'title':'Central Park',
+		'lat':'40.79057821856398',
+		'lon':'-73.96032895666951',
+		'url':'pictures/centralpark.jpg'
+	},
+	{
+		'title':'Gracie Mansion',
+		'lat':'40.776363042999066',
+		'lon':'-73.94348851152839',
+		'url':'pictures/graciemansion.jpg'
+	},
+	{
+		'title':'Columbus Circle',
+		'lat':'40.76797798893281',
+		'lon':'-73.98152190229466',
+		'url':'pictures/columbuscircle.jpg'
+	},
+	{
+		'title':'Times Square',
+		'lat':'40.75791772547082',
+		'lon':'-73.98569282236338',
+		'url':'pictures/timessquare.jpg'
+	},
+	{
+		'title':'Union Square',
+		'lat':'40.735478925133535',
+		'lon':'-73.99057677317711',
+		'url':'pictures/unionsquare.jpg'
+	},
+	{
+		'title':'Washington Square Park',
+		'lat':'40.73054224702604',
+		'lon':'-73.99817959666248',
+		'url':'pictures/washington.jpg'
+	},
+	{
+		'title':'Tribeca',
+		'lat':'40.71793945933767',
+		'lon':'-74.00855589556477',
+		'url':'pictures/tribeca.jpg'
+	},
+	{
+		'title':'City Hall',
+		'lat':'40.712669242608136',
+		'lon':'-74.00615263832182',
+		'url':'pictures/cityhall.jpg'
+	},
+	{
+		'title':'Brooklyn Bridge',
+		'lat':'40.70590665111006',
+		'lon':'-73.99666026951715',
+		'url':'pictures/brooklynbridge.jpg'
+	}
 ]
 
 // initialize
