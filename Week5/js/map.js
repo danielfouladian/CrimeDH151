@@ -17,40 +17,152 @@ let info_panel = L.control();
 let path = "data/arrest.csv";
 
 let aapimarkers = L.featureGroup();
-let amindmarkers = L.featureGroup();
 let blackmarkers = L.featureGroup();
 let hispanicmarkers = L.featureGroup();
-let unknownmarkers = L.featureGroup();
 let whitemarkers = L.featureGroup();
 let othermarkers = L.featureGroup();
 
 let aapi;
-let amind;
 let black;
 let hispanic;
-let unknown;
 let white;
 let other;
 
+let protestmarkers = L.featureGroup();
+let protest = [
+	{
+		'title':'Bay Ridge',
+		'lat':'40.62591540112481',
+		'lon':'-74.02721886169802',
+		'url':'pictures/bayridge.jpg'
+	},
+	{
+		'title':'Sunset Park',
+		'lat':'40.64865259769964',
+		'lon':'-74.0047435319297',
+		'url':'pictures/sunsetpark.jpg'
+	},
+	{
+		'title':'Flatbush',
+		'lat':'40.64145544909182',
+		'lon':'-73.95942472054867',
+		'url':'pictures/flatbush.jpg'
+	},
+	{
+		'title':'Rockaway',
+		'lat':'40.58552430396091',
+		'lon':'-73.8173381962468',
+		'url':'pictures/rockaway.jpg'
+	},
+	{
+		'title':'East New York',
+		'lat':'40.660471050427816',
+		'lon':'-73.87687528695704',
+		'url':'pictures/eastny.jpg'
+	},
+	{
+		'title':'Park Slope',
+		'lat':'40.673609398697145',
+		'lon':'-73.98141869547717',
+		'url':'pictures/parkslope.jpg'
+	},
+	{
+		'title':'Grand Army Plaza',
+		'lat':'40.67443163158397',
+		'lon':'-73.97032925016751',
+		'url':'pictures/grandarmyplaza.jpg'
+	},
+	{
+		'title':'Barclays Center',
+		'lat':'40.68279292748874',
+		'lon':'-73.97528685627431',
+		'url':'pictures/barclays.jpg'
+	},
+	{
+		'title':'Cadman Plaza',
+		'lat':'40.698119657900286',
+		'lon':'-73.99086860783727',
+		'url':'pictures/cadmanplaza.jpg'
+	},
+	{
+		'title':'88th Precinct',
+		'lat':'40.69027946242756',
+		'lon':'-73.96051952422872',
+		'url':'pictures/88.png'
+	},
+	{
+		'title':'Bedford-Stuyvesant',
+		'lat':'40.680382306749664',
+		'lon':'-73.94953490229742',
+		'url':'pictures/bedford.jpg'
+	},
+	{
+		'title':'Crown Heights',
+		'lat':'40.67344407236326',
+		'lon':'-73.94192040414453',
+		'url':'pictures/crownheights.jpg'
+	},
+	{
+		'title':'McCarren Park',
+		'lat':'40.720775175190546',
+		'lon':'-73.95128898960765',
+		'url':'pictures/mccarrenpark.jpg'
+	},
+	{
+		'title':'Jackson Heights',
+		'lat':'40.75672647491698',
+		'lon':'-73.87548937345977',
+		'url':'pictures/jacksonheights.jpg'
+	},
+	{
+		'title':'Astoria Park',
+		'lat':'40.778138287367774',
+		'lon':'-73.92412106252507',
+		'url':'pictures/astoriapark.jpg'
+	},
+	
+]
+
 // initialize
 $( document ).ready(function() {
-    createMap(lat,lon,zl);
+    createMap(protest, protestmarkers, lat,lon,zl);
 	getGeoJSON();
 	readCSV(path);
 });
 
 // create the map
-function createMap(lat,lon,zl){
+function createMap(protest, protestmarkers,lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
 
 	L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
+
+	//add contextual images
+	var imageIcon = L.icon({
+		iconUrl: 'pictures/protest.png',
+		iconSize: [15, 15]
+	});
+
+
+	protest.forEach(function(item,index){
+		// create marker
+		let marker = L.marker([item.lat,item.lon], {icon: imageIcon})
+		.on('mouseover', function(){
+			this.bindPopup(`<h2>${item.title}</h2> <img style="max-width: 200px" src=${item.url}></img>`, {maxWidth: "auto"}).openPopup()
+		})
+
+		// add marker to featuregroup		
+		protestmarkers.addLayer(marker)
+	})
+
+	protestmarkers.addTo(map)
 }
 
 function flyToIndex(lat, lon){
 	map.flyTo([lat,lon],12)
 };
+
 
 // function to read csv data
 function readCSV(path){
@@ -61,36 +173,24 @@ function readCSV(path){
 			console.log(data);
 			globaldata = data;
 			aapi = globaldata.data.filter(data => data.PERP_RACE=='ASIAN / PACIFIC ISLANDER');
-			//amind = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE');
 			black = globaldata.data.filter(data => data.PERP_RACE=='BLACK');
 			hispanic = globaldata.data.filter(data => data.PERP_RACE=='BLACK HISPANIC' | data.PERP_RACE=='WHITE HISPANIC');
-			//unknown = globaldata.data.filter(data => data.PERP_RACE=='UNKNOWN');
 			white = globaldata.data.filter(data => data.PERP_RACE=='WHITE');
 			other = globaldata.data.filter(data => data.PERP_RACE=='AMERICAN INDIAN/ALASKAN NATIVE' | data.PERP_RACE=='UNKNOWN');
-			//whitehispanic = globaldata.data.filter(data => data.PERP_RACE=='WHITE HISPANIC');
-			// map the data
 			
+			// map the data	
 			mapCSV(aapi, aapimarkers, '#1681c4', 'Asian/Pacific Islanders');
-			// mapCSV(amind, amindmarkers, '#ECA299', 'American Indian/Alaskan Native');
 			mapCSV(black, blackmarkers, '#1667c4', 'Black');
 			mapCSV(hispanic, hispanicmarkers, '#164dc4', 'Hispanic')
-			// mapCSV(blackhispanic, blackhispanicmarkers, '#D94534', 'Black Hispanic');
-			// mapCSV(unknown, unknownmarkers, '#BF2B1A', 'Unknown');
 			mapCSV(white, whitemarkers, '#1633c4', 'White');
 			mapCSV(other, othermarkers, '#1b16c4', 'Other');
-			// mapCSV(whitehispanic, whitehispanicmarkers, '#680B01', 'White Hispanic');
 
 			let layers = {
 				"Asian/Pacific Islanders": aapimarkers,
-				//"American Indian/Alaskan Native": amindmarkers,
 				"Black": blackmarkers,
-				//"Black Hispanic": blackhispanicmarkers,
 				"White": whitemarkers,
 				"Hispanic": hispanicmarkers,
 				"Other": othermarkers,
-				//"White Hispanic": whitehispanicmarkers,
-				//"Unknown": unknownmarkers,
-				
 			};
 
 			//L.control.layers(null, layers).addTo(map)
@@ -141,9 +241,6 @@ function getGeoJSON(field){
 
 		// call the map function
 		mapGeoJSON(field)
-		// mapGeoJSON('black')
-		// mapGeoJSON('hispanic')
-		// mapGeoJSON('white') // add a field to be used
 	})
 }
 
@@ -493,143 +590,3 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
-// Home Page Demographics Button Commands
-// $("#asian").click(function(event){
-// 	event.preventDefault();
-// 	getGeoJSON('asian');
-// 	if(map.hasLayer(aapimarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(aapimarkers);
-// 	} 
-// 	if(map.hasLayer(blackmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(blackmarkers);
-// 	} 
-// 	if(map.hasLayer(hispanicmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(hispanicmarkers);
-// 	} 
-// 	if(map.hasLayer(whitemarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(whitemarkers);
-// 	} 
-// 	if(map.hasLayer(othermarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(othermarkers);
-// 	} 
-// 	map.addLayer(aapimarkers);
-// 	aapimarkers.bringToFront();
-// 	$(this).addClass('selected');
-// });
-
-// $("#black").click(function(event){
-// 	event.preventDefault();
-// 	getGeoJSON('black');
-// 	if(map.hasLayer(aapimarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(aapimarkers);
-// 	} 
-// 	if(map.hasLayer(blackmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(blackmarkers);
-// 	} 
-// 	if(map.hasLayer(hispanicmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(hispanicmarkers);
-// 	} 
-// 	if(map.hasLayer(whitemarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(whitemarkers);
-// 	} 
-// 	if(map.hasLayer(othermarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(othermarkers);
-// 	} 
-// 	map.addLayer(blackmarkers);
-// 	blackmarkers.bringToFront();
-// 	$(this).addClass('selected');
-// });
-
-// $("#hispanic").click(function(event){
-// 	event.preventDefault();
-// 	getGeoJSON('hispanic');
-// 	if(map.hasLayer(aapimarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(aapimarkers);
-// 	} 
-// 	if(map.hasLayer(blackmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(blackmarkers);
-// 	} 
-// 	if(map.hasLayer(hispanicmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(hispanicmarkers);
-// 	} 
-// 	if(map.hasLayer(whitemarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(whitemarkers);
-// 	} 
-// 	if(map.hasLayer(othermarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(othermarkers);
-// 	} 
-// 	map.addLayer(hispanicmarkers);
-// 	hispanicmarkers.bringToFront()
-// 	$(this).addClass('selected');
-// });
-
-// $("#white").click(function(event){
-// 	event.preventDefault();
-// 	getGeoJSON('white');
-// 	if(map.hasLayer(aapimarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(aapimarkers);
-// 	} 
-// 	if(map.hasLayer(blackmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(blackmarkers);
-// 	} 
-// 	if(map.hasLayer(hispanicmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(hispanicmarkers);
-// 	} 
-// 	if(map.hasLayer(whitemarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(whitemarkers);
-// 	} 
-// 	if(map.hasLayer(othermarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(othermarkers);
-// 	} 
-// 	map.addLayer(whitemarkers);
-// 	whitemarkers.bringToFront();
-// 	$(this).addClass('selected');
-// });
-
-// $("#other").click(function(event){
-// 	event.preventDefault();
-// 	getGeoJSON('white');
-// 	if(map.hasLayer(aapimarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(aapimarkers);
-// 	} 
-// 	if(map.hasLayer(blackmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(blackmarkers);
-// 	} 
-// 	if(map.hasLayer(hispanicmarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(hispanicmarkers);
-// 	} 
-// 	if(map.hasLayer(whitemarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(whitemarkers);
-// 	} 
-// 	if(map.hasLayer(othermarkers)) {
-// 		$(this).removeClass('selected');
-// 		map.removeLayer(othermarkers);
-// 	} 
-// 	map.addLayer(othermarkers);
-// 	othermarkers.bringToFront();
-// 	$(this).addClass('selected');
-// });
