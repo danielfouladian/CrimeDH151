@@ -8,7 +8,7 @@ Our team name is: The Avengers of Data and our project will focus on crime data 
 |:---:|:---:|:---:|:---:|
 | Designer | Data Analyst | Data Analyst | Writer / Data Analyst |
 | Christina is a third year majoring in Business Economics and minoring in Digital Humanities. Professionally, she is interested in marketing, specifically product marketing, for the tech and entertainment industry. In her free time, she loves spending time with her cat and family. | Cynthia is a third year studying Statistics and Digital Humanities. She’s interested in real estate, urban planning, and the entertainment industry. In her free time, she enjoys taking care of her houseplants and painting landscape scenery | Daniel Fouladian is a senior pursuing a B.A in Psychology with a minor in Digital Humanities (2022). He continues to succeed academically as he was born deaf and wears a Cochlear Implant to hear. He hopes he can inspire many more to overcome their obstacles and hardships. In his free time, he loves to play sports and create using graphic design. | Kristina is a senior pursuing a BS in Economics with a minor in Digital Humanities. Professionally, she is interested in social media marketing and fashion styling. In her free time, she loves sourcing vintage clothing and relaxing with friends and family. |
-| ![](Cha.png) |![](Gong.png)| ![](daniel.png) | ![](Thabet.png) |
+| ![](pictures/Cha.png) |![](pictures/Gong.png)| ![](pictures/daniel.png) | ![](pictures/Thabet.png) |
 
 ## Overview
 We will be using NYPD criminal record data in combination with NYC's demographical data to compare and contrast common crimes that occur in different boroughs. Our work will center around analyzing the tpes of crimes different groups in New York are arrested and convicted for, hopefully making a strong comment on not only the racial profiling present in NYPD, but how economic status and opportunity play a part in criminal behavior. We hope for our work to be an educational resource for those looking to gain knowledge about criminal activity in all regions of New York. 
@@ -55,7 +55,7 @@ This data will be exported as a CSV from the given link and geocoded using Javas
 ## UX Components
 ### Figma Wireframes
 
-![](home.png)
-![](about.png)
+![](pictures/home.png)
+![](pictures/about.png)
 
 

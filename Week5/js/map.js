@@ -197,6 +197,12 @@ let protest = [
 		'lat':'40.70590665111006',
 		'lon':'-73.99666026951715',
 		'url':'pictures/brooklynbridge.jpg'
+	},
+	{
+		'title':'Staten Island',
+		'lat':'40.60105893415586',
+		'lon':'-74.09152896925836',
+		'url':'pictures/statenisland.jpg'
 	}
 ]
 
